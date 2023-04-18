@@ -3621,23 +3621,31 @@ h6 {
 
 .new_product {
     background: #f6f6f6;
-    padding: 90px 15px;
-    text-align: center
+    padding: 00px 0px;
+    text-align: center;
+    margin-top: 8vh;
 }
 
 .new_product .product-img {
-    padding: 90px 0px
+    padding: 0px 0px
 }
 
 .new_product h5 {
     font-size: 20px;
-    color: #4a4a4a;
-    margin-bottom: 20px
+    margin-bottom: 20px;
+    position: absolute;
+    margin-top: 74vh;
+    margin-left: 12vw;
+    color: #91CDFF;
 }
 
 .new_product h3 {
     font-size: 32px;
-    font-weight: 700
+    font-weight: 700;
+    position: absolute;
+    margin-top: 80vh;
+    margin-left: 6vw;
+    color: #91CDFF;
 }
 
 .new_product h4 {

@@ -41,7 +41,8 @@ Route::prefix('/admin')->middleware(['auth', 'isAdmin'])->group(function () {
     Route::get('/orders/{id}/export', [BackendController::class, 'export'])->name('orders.export');
     Route::get('/pie-chart', [BackendController::class, 'pieChart'])->name('pie-chart');
     Route::get('/report-by-day', [BackendController::class, 'ordersReport'])->name('orders.report.by.day');
-
+    Route::post('/products/{id}/like', [ProductController::class, 'like'])->name('products.like');
+    Route::post('/products/{id}/unlike', [ProductController::class, 'unlike'])->name('products.unlike');
 
 
     Route::get('/dashboard', [BackendController::class, 'dashboard']);

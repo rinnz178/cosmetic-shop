@@ -118,22 +118,24 @@
                                     </a>
 
                                 @endguest
-                                <a class="icon_btn" href="#">
+                                {{-- <a class="icon_btn" href="#">
                                     <i class="lnr lnr lnr-diamond"></i>
-                                </a>
+                                </a> --}}
 
                             </div>
                         </form>
-                        <form id="like-form" action="{{ route('products.like', ['id' => $product->id]) }}" method="POST">
-                            @csrf
-                            <button type="submit" class="btn btn-primary" id="like-btn">Like</button>
-                        </form>
-                        <form id="unlike-form" action="{{ route('products.unlike', ['id' => $product->id]) }}"
-                            method="POST">
-                            @csrf
-                            <button type="submit" class="btn btn-danger" id="unlike-btn">Unlike</button>
-                        </form>
-                        <h3>Total Likes: <span id="total-likes">{{ $product->total_likes }}</span></h3>
+                        {{-- @if ($product->hasLiked(Auth::id()))
+                            <form action="{{ route('products.unlike', ['id' => $product->id]) }}" method="POST">
+                                @csrf
+                                <button type="submit" class="btn btn-danger">Unlike</button>
+                            </form>
+                        @else
+                            <form action="{{ route('products.like', ['id' => $product->id]) }}" method="POST">
+                                @csrf
+                                <button type="submit" class="btn btn-primary">Like</button>
+                            </form>
+                        @endif
+                        <h3>Total Likes: <span id="total-likes">{{ $product->total_likes }}</span></h3> --}}
 
                     </div>
                 </div>

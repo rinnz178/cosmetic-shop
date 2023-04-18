@@ -190,11 +190,11 @@
                                         </a>
                                     </li> --}}
 
-                                    <li class="nav-item">
+                                    {{-- <li class="nav-item">
                                         <a href="#" class="icons">
                                             <i class="ti-heart" aria-hidden="true"></i>
                                         </a>
-                                    </li>
+                                    </li> --}}
                                     @auth
                                         <li class="nav-item submenu dropdown">
                                             <a href="#" class="icons">
@@ -361,14 +361,7 @@
     <script src="{{ asset('frontend/vendors/counter-up/jquery.counterup.js') }}"></script>
     <script src="{{ asset('frontend/js/mail-script.js') }}"></script>
     <script src="{{ asset('frontend/js/theme.js') }}"></script>
-    <script>
-        $(function() {
-            $('#exampleModal').modal('show');
-        });
-        setTimeout(function() {
-            $('#exampleModal').modal('hide');
-        }, 3000);
-    </script>
+    
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.min.js"></script>
     <script>

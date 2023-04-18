@@ -41,10 +41,15 @@
             <div class="container">
                 <div class="banner_content row">
                     <div class="col-lg-12">
-                        <p class=" text-uppercase" style="color: rgb(93, 93, 93)">men Collection</p>
-                        <h3 style="color: rgb(93, 93, 93)"><span>Show</span> Your <br />Personal <span>Style</span></h3>
-                        <h4 style="color: rgb(93, 93, 93)">Fowl saw dry which a above together place.</h4>
-                        <a class="main_btn mt-40" href="#">View Collection</a>
+                        <h3 style="color: rgb(93, 93, 93)"><span>Dermatology</span> Makes <br /> The World<span>
+                                Healthier</span></h3>
+                        <h4 style="color: rgb(93, 93, 93)"> </h4>
+                        <p class=" text-uppercase" style="color: rgb(93, 93, 93)">After a childhood experience with painful
+                            burns, <br>the founder of Dr.G became a dermatologist <br> in order to help people suffering
+                            from skin
+                            problems.</p>
+
+                        <a class="main_btn mt-40" href="{{ url('/shop') }}">View Shop</a>
                     </div>
                 </div>
             </div>
@@ -119,15 +124,30 @@
                             <div class="product-img">
                                 <img class="img-fluid w-100" src="/image/{{ $feature->image }}"alt="" />
                                 <div class="p_icon">
-                                    <a href="#">
+                                    <a href="{{ route('frontend.productDetail', $feature->id) }}">
                                         <i class="ti-eye"></i>
                                     </a>
-                                    <a href="#">
+                                    {{-- <a href="#">
                                         <i class="ti-heart"></i>
-                                    </a>
-                                    <a href="#">
-                                        <i class="ti-shopping-cart"></i>
-                                    </a>
+                                    </a> --}}
+                                    @guest
+                                        <a href="{{ url('/login') }}">
+                                            <i class="ti-shopping-cart"></i>
+                                        </a>
+
+                                    @endguest
+                                    @auth
+                                        <a>
+                                            <form method="POST" action="{{ route('cart.add', $feature->id) }}">
+                                                @csrf
+                                                <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
+                                                <button type="submit" class="btn shop_cart">
+                                                    <i class="ti-shopping-cart"></i>
+                                                </button>
+
+                                            </form>
+                                        </a>
+                                    @endauth
                                 </div>
                             </div>
                             <div class="product-btm">
@@ -154,10 +174,11 @@
             <div class="row justify-content-center">
                 <div class="offset-lg-4 col-lg-6 text-center">
                     <div class="offer_content">
-                        <h3 class="text-uppercase mb-40">all men’s collection</h3>
-                        <h2 class="text-uppercase">50% off</h2>
-                        <a href="#" class="main_btn mb-20 mt-5">Discover Now</a>
-                        <p>Limited Time Offer</p>
+                        <h3 class="text-uppercase mb-40">Try Our Best Sellers </h3>
+                        <h2 style="font-size:80px">
+                            For $8.99 </h2>
+                        <a href="{{url('/shop')}}" class="main_btn mb-20 mt-5">Shop Now</a>
+                        {{-- <p>Limited Time Offer</p> --}}
                     </div>
                 </div>
             </div>
@@ -180,14 +201,12 @@
             <div class="row">
                 <div class="col-lg-6">
                     <div class="new_product">
-                        <h5 class="text-uppercase">collection of 2019</h5>
+                        <h5 class="text-uppercase" style="">collection of 2023</h5>
                         <h3 class="text-uppercase">Men’s summer t-shirt</h3>
                         <div class="product-img">
-                            <img class="img-fluid" src="{{ asset('frontend/img/product/new-product/new-product1.png') }}"
-                                alt="" />
+                            <img class="img-fluid" src="{{ asset('assets/home.JPG') }}" alt="" />
                         </div>
-                        <h4>.....</h4>
-                        <a href="#" class="main_btn">Go to Shop</a>
+
                     </div>
                 </div>
 
@@ -200,15 +219,31 @@
                                         <img class="img-fluid w-100" src="/image/{{ $newProduct->image }}"
                                             alt="" />
                                         <div class="p_icon">
-                                            <a href="#">
+                                            <a href="{{ route('frontend.productDetail', $newProduct->id) }}">
                                                 <i class="ti-eye"></i>
                                             </a>
-                                            <a href="#">
+                                            {{-- <a href="#">
                                                 <i class="ti-heart"></i>
-                                            </a>
-                                            <a href="#">
-                                                <i class="ti-shopping-cart"></i>
-                                            </a>
+                                            </a> --}}
+                                            @guest
+                                                <a href="{{ url('/login') }}">
+                                                    <i class="ti-shopping-cart"></i>
+                                                </a>
+
+                                            @endguest
+                                            @auth
+                                                <a>
+                                                    <form method="POST" action="{{ route('cart.add', $newProduct->id) }}">
+                                                        @csrf
+                                                        <input type="hidden" name="user_id"
+                                                            value="{{ auth()->user()->id }}">
+                                                        <button type="submit" class="btn shop_cart">
+                                                            <i class="ti-shopping-cart"></i>
+                                                        </button>
+
+                                                    </form>
+                                                </a>
+                                            @endauth
                                         </div>
                                     </div>
                                     <div class="product-btm">
@@ -230,343 +265,7 @@
             </div>
         </div>
     </section>
-    <!--================ End New Product Area =================-->
 
-    {{-- <!--================ Inspired Product Area =================-->
-    <section class="inspired_product_area section_gap_bottom_custom">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-lg-12">
-                    <div class="main_title">
-                        <h2><span>Inspired products</span></h2>
-                        <p>Bring called seed first of third give itself now ment</p>
-                    </div>
-                </div>
-            </div>
 
-            <div class="row">
-                <div class="col-lg-3 col-md-6">
-                    <div class="single-product">
-                        <div class="product-img">
-                            <img class="img-fluid w-100" src="{{ asset('frontend/img/product/inspired-product/i1.jpg') }}"
-                                alt="" />
-                            <div class="p_icon">
-                                <a href="#">
-                                    <i class="ti-eye"></i>
-                                </a>
-                                <a href="#">
-                                    <i class="ti-heart"></i>
-                                </a>
-                                <a href="#">
-                                    <i class="ti-shopping-cart"></i>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="product-btm">
-                            <a href="#" class="d-block">
-                                <h4>Latest men’s sneaker</h4>
-                            </a>
-                            <div class="mt-3">
-                                <span class="mr-4">$25.00</span>
-                                <del>$35.00</del>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-3 col-md-6">
-                    <div class="single-product">
-                        <div class="product-img">
-                            <img class="img-fluid w-100" src="img/product/inspired-product/i2.jpg" alt="" />
-                            <div class="p_icon">
-                                <a href="#">
-                                    <i class="ti-eye"></i>
-                                </a>
-                                <a href="#">
-                                    <i class="ti-heart"></i>
-                                </a>
-                                <a href="#">
-                                    <i class="ti-shopping-cart"></i>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="product-btm">
-                            <a href="#" class="d-block">
-                                <h4>Latest men’s sneaker</h4>
-                            </a>
-                            <div class="mt-3">
-                                <span class="mr-4">$25.00</span>
-                                <del>$35.00</del>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-3 col-md-6">
-                    <div class="single-product">
-                        <div class="product-img">
-                            <img class="img-fluid w-100" src="img/product/inspired-product/i3.jpg" alt="" />
-                            <div class="p_icon">
-                                <a href="#">
-                                    <i class="ti-eye"></i>
-                                </a>
-                                <a href="#">
-                                    <i class="ti-heart"></i>
-                                </a>
-                                <a href="#">
-                                    <i class="ti-shopping-cart"></i>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="product-btm">
-                            <a href="#" class="d-block">
-                                <h4>Latest men’s sneaker</h4>
-                            </a>
-                            <div class="mt-3">
-                                <span class="mr-4">$25.00</span>
-                                <del>$35.00</del>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-3 col-md-6">
-                    <div class="single-product">
-                        <div class="product-img">
-                            <img class="img-fluid w-100" src="img/product/inspired-product/i4.jpg" alt="" />
-                            <div class="p_icon">
-                                <a href="#">
-                                    <i class="ti-eye"></i>
-                                </a>
-                                <a href="#">
-                                    <i class="ti-heart"></i>
-                                </a>
-                                <a href="#">
-                                    <i class="ti-shopping-cart"></i>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="product-btm">
-                            <a href="#" class="d-block">
-                                <h4>Latest men’s sneaker</h4>
-                            </a>
-                            <div class="mt-3">
-                                <span class="mr-4">$25.00</span>
-                                <del>$35.00</del>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-3 col-md-6">
-                    <div class="single-product">
-                        <div class="product-img">
-                            <img class="img-fluid w-100" src="img/product/inspired-product/i5.jpg" alt="" />
-                            <div class="p_icon">
-                                <a href="#">
-                                    <i class="ti-eye"></i>
-                                </a>
-                                <a href="#">
-                                    <i class="ti-heart"></i>
-                                </a>
-                                <a href="#">
-                                    <i class="ti-shopping-cart"></i>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="product-btm">
-                            <a href="#" class="d-block">
-                                <h4>Latest men’s sneaker</h4>
-                            </a>
-                            <div class="mt-3">
-                                <span class="mr-4">$25.00</span>
-                                <del>$35.00</del>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-3 col-md-6">
-                    <div class="single-product">
-                        <div class="product-img">
-                            <img class="img-fluid w-100" src="img/product/inspired-product/i6.jpg" alt="" />
-                            <div class="p_icon">
-                                <a href="#">
-                                    <i class="ti-eye"></i>
-                                </a>
-                                <a href="#">
-                                    <i class="ti-heart"></i>
-                                </a>
-                                <a href="#">
-                                    <i class="ti-shopping-cart"></i>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="product-btm">
-                            <a href="#" class="d-block">
-                                <h4>Latest men’s sneaker</h4>
-                            </a>
-                            <div class="mt-3">
-                                <span class="mr-4">$25.00</span>
-                                <del>$35.00</del>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-3 col-md-6">
-                    <div class="single-product">
-                        <div class="product-img">
-                            <img class="img-fluid w-100" src="img/product/inspired-product/i7.jpg" alt="" />
-                            <div class="p_icon">
-                                <a href="#">
-                                    <i class="ti-eye"></i>
-                                </a>
-                                <a href="#">
-                                    <i class="ti-heart"></i>
-                                </a>
-                                <a href="#">
-                                    <i class="ti-shopping-cart"></i>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="product-btm">
-                            <a href="#" class="d-block">
-                                <h4>Latest men’s sneaker</h4>
-                            </a>
-                            <div class="mt-3">
-                                <span class="mr-4">$25.00</span>
-                                <del>$35.00</del>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-3 col-md-6">
-                    <div class="single-product">
-                        <div class="product-img">
-                            <img class="img-fluid w-100" src="img/product/inspired-product/i8.jpg" alt="" />
-                            <div class="p_icon">
-                                <a href="#">
-                                    <i class="ti-eye"></i>
-                                </a>
-                                <a href="#">
-                                    <i class="ti-heart"></i>
-                                </a>
-                                <a href="#">
-                                    <i class="ti-shopping-cart"></i>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="product-btm">
-                            <a href="#" class="d-block">
-                                <h4>Latest men’s sneaker</h4>
-                            </a>
-                            <div class="mt-3">
-                                <span class="mr-4">$25.00</span>
-                                <del>$35.00</del>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!--================ End Inspired Product Area =================--> --}}
-
-    <!--================ Start Blog Area =================-->
-    <section class="blog-area section-gap">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-lg-12">
-                    <div class="main_title">
-                        <h2><span>latest blog</span></h2>
-                        <p>Bring called seed first of third give itself now ment</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-lg-4 col-md-6">
-                    <div class="single-blog">
-                        <div class="thumb">
-                            <img class="img-fluid" src="img/b1.jpg" alt="">
-                        </div>
-                        <div class="short_details">
-                            <div class="meta-top d-flex">
-                                <a href="#">By Admin</a>
-                                <a href="#"><i class="ti-comments-smiley"></i>2 Comments</a>
-                            </div>
-                            <a class="d-block" href="single-blog.html">
-                                <h4>Ford clever bed stops your sleeping
-                                    partner hogging the whole</h4>
-                            </a>
-                            <div class="text-wrap">
-                                <p>
-                                    Let one fifth i bring fly to divided face for bearing the divide unto seed winged
-                                    divided light
-                                    Forth.
-                                </p>
-                            </div>
-                            <a href="#" class="blog_btn">Learn More <span class="ml-2 ti-arrow-right"></span></a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-4 col-md-6">
-                    <div class="single-blog">
-                        <div class="thumb">
-                            <img class="img-fluid" src="img/b2.jpg" alt="">
-                        </div>
-                        <div class="short_details">
-                            <div class="meta-top d-flex">
-                                <a href="#">By Admin</a>
-                                <a href="#"><i class="ti-comments-smiley"></i>2 Comments</a>
-                            </div>
-                            <a class="d-block" href="single-blog.html">
-                                <h4>Ford clever bed stops your sleeping
-                                    partner hogging the whole</h4>
-                            </a>
-                            <div class="text-wrap">
-                                <p>
-                                    Let one fifth i bring fly to divided face for bearing the divide unto seed winged
-                                    divided light
-                                    Forth.
-                                </p>
-                            </div>
-                            <a href="#" class="blog_btn">Learn More <span class="ml-2 ti-arrow-right"></span></a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-4 col-md-6">
-                    <div class="single-blog">
-                        <div class="thumb">
-                            <img class="img-fluid" src="img/b3.jpg" alt="">
-                        </div>
-                        <div class="short_details">
-                            <div class="meta-top d-flex">
-                                <a href="#">By Admin</a>
-                                <a href="#"><i class="ti-comments-smiley"></i>2 Comments</a>
-                            </div>
-                            <a class="d-block" href="single-blog.html">
-                                <h4>Ford clever bed stops your sleeping
-                                    partner hogging the whole</h4>
-                            </a>
-                            <div class="text-wrap">
-                                <p>
-                                    Let one fifth i bring fly to divided face for bearing the divide unto seed winged
-                                    divided light
-                                    Forth.
-                                </p>
-                            </div>
-                            <a href="#" class="blog_btn">Learn More <span class="ml-2 ti-arrow-right"></span></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    
     <!--================ End Blog Area =================-->
 @endsection

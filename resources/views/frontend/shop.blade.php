@@ -45,9 +45,9 @@
                                                     <a href="{{ route('frontend.productDetail', $product->id) }}">
                                                         <i class="ti-eye"></i>
                                                     </a>
-                                                    <a href="#">
+                                                    {{-- <a href="#">
                                                         <i class="ti-heart"></i>
-                                                    </a>
+                                                    </a> --}}
                                                     @guest
                                                         <a href="{{url('/login')}}">
                                                             <i class="ti-shopping-cart"></i>

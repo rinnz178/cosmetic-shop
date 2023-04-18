@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Cart;
 use App\Models\Product;
 use App\Models\Category;
+use App\Models\Like;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -73,24 +74,40 @@ class FrontendController extends Controller
         return view('frontend.productDetail', ['product' => $productDetail, 'productQuantity' => $productQuantity,]);
     }
 
-    public function like($id)
-    {
-        $product = Product::find($id);
+    // public function like($id)
+    // {
+    //     $user = auth()->user();
+    //     $product = Product::find($id);
 
-        if (!Auth::user()->hasLike($product)) {
-            $product->likes++;
-            $product->likedBy(Auth::user());
-        }
+    //     // Check if the user has already liked the product
+    //     if ($user->hasLiked($product)) {
+    //         return response()->json([
+    //             'status' => 'error',
+    //             'message' => 'You have already liked this product'
+    //         ]);
+    //     }
 
-        return redirect()->back();  
-    }
+    //     $user->likes()->attach($product->id);
+    //     $product->likes++;
+    //     $product->save();
 
-    public function unlike($id)
-    {
-        $product = Product::find($id);
-        $product->likes--;
-        $product->save();
+    //     return response()->json([
+    //         'status' => 'success',
+    //         'message' => 'Product has been liked successfully'
+    //     ]);
+    // }
 
-        return redirect()->back();
-    }
+    // public function unlike($id)
+    // {
+    //     $product = Product::findOrFail($id);
+
+    //     if (!auth()->user()->hasLiked($product)) {
+    //         return response()->json(['message' => 'You have not liked this product.']);
+    //     }
+
+    //     $like = $product->likes()->where('user_id', auth()->id())->first();
+    //     $like->delete();
+
+    //     return response()->json(['message' => 'Product unliked.']);
+    // }
 }
